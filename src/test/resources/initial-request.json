@@ -1,0 +1,26 @@
+{
+  "request": {
+    "direction": "UP",
+    "pickupFloor": 2,
+    "dropFloor": 5
+  },
+  "afterState" : {
+    "lifts": [
+      {
+        "id": 1,
+        "state": "MOVING",
+        "floor": "1"
+      },
+      {
+        "id": 2,
+        "state": "IDLE",
+        "floor": "0"
+      },
+      {
+        "id": 3,
+        "state": "IDLE",
+        "floor": "0"
+      }
+    ]
+  }
+}
