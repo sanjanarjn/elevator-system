@@ -1,0 +1,30 @@
+{
+  "configuration": {
+    "liftCount": 3
+  },
+  "afterState": {
+    "lifts": [
+      {
+        "id": 1,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      },
+      {
+        "id": 2,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      },
+      {
+        "id": 3,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      }
+    ]
+  }
+}

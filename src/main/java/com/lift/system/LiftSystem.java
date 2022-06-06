@@ -1,14 +1,16 @@
 package com.lift.system;
 
 import com.lift.models.Lift;
-import com.lift.models.LiftRequest;
-import com.lift.models.LiftSystemState;
+import com.lift.models.PickupRequest;
+import com.lift.scheduling.LiftSystemState;
+import com.lift.scheduling.LiftScheduler;
 import lombok.Getter;
 
 @Getter
 public class LiftSystem {
 
     private LiftSystemState systemState;
+    private LiftScheduler scheduler;
 
     public void initialize(LiftSystemConfiguration configuration) {
         systemState = new LiftSystemState();
@@ -18,7 +20,7 @@ public class LiftSystem {
         }
     }
 
-    public void handleRequest(LiftRequest request) {
-
+    public void acceptPickupRequest(PickupRequest request) {
+        scheduler.handlePickupRequest(request, systemState);
     }
 }

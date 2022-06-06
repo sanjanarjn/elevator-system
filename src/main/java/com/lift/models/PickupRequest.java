@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LiftRequest {
+public class PickupRequest {
 
     private Direction direction;
     private int pickupFloor;
-    private int dropFloor;
 }

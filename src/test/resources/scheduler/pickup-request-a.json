@@ -1,0 +1,58 @@
+{
+  "request": {
+    "direction": "UP",
+    "pickupFloor": 2
+  },
+  "beforeState" : {
+    "lifts": [
+      {
+        "id": 1,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      },
+      {
+        "id": 2,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "2"
+        }
+      },
+      {
+        "id": 3,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      }
+    ]
+  },
+  "afterState" : {
+    "lifts": [
+      {
+        "id": 1,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      },
+      {
+        "id": 2,
+        "liftState": {
+          "state": "MOVING",
+          "floor": "2",
+          "movingDirection": "UP",
+          "servingDirection": "UP"
+        }
+      },
+      {
+        "id": 3,
+        "liftState": {
+          "state": "IDLE",
+          "floor": "0"
+        }
+      }
+    ]
+  }
+}

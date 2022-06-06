@@ -11,12 +11,10 @@ import lombok.Setter;
 public class Lift {
 
     private int id;
-    private State state;
-    private int floor;
+    private LiftState liftState;
 
     public Lift(int id) {
         this.id = id;
-        this.state = State.IDLE;
-        this.floor = 0;
+        this.liftState = new LiftState();
     }
 }
