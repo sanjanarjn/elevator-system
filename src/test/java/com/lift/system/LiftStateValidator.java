@@ -5,7 +5,9 @@ import com.lift.models.LiftState;
 import com.lift.scheduling.LiftSystemState;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.PriorityQueue;
 
 public class LiftStateValidator {
 
@@ -13,19 +15,13 @@ public class LiftStateValidator {
         Assertions.assertTrue(actualSystemState != null);
         Assertions.assertEquals(expectedSystemState.getLiftCount(), actualSystemState.getLiftCount());
 
-        int liftCount = expectedSystemState.getLiftCount();
-        for (int i = 0; i < liftCount; i++) {
-            Lift expectedLift = expectedSystemState.getLift(i).get();
-            Optional<Lift> liftOptional = actualSystemState.getLift(i);
-            if(liftOptional.isPresent()) {
-                Lift actualLift = liftOptional.get();
+        List<Lift> expectedLifts = expectedSystemState.getLifts();
+        List<Lift> actualLifts = actualSystemState.getLifts();
 
-                validateLiftState(expectedLift.getLiftState(), actualLift.getLiftState());
-
-            }
-            else {
-                Assertions.fail();
-            }
+        for (int i = 0; i < expectedLifts.size(); i++) {
+            Lift expectedLift = expectedLifts.get(i);
+            Lift actualLift = actualLifts.get(i);
+            validateLiftState(expectedLift.getLiftState(), actualLift.getLiftState());
         }
     }
 
@@ -33,6 +29,17 @@ public class LiftStateValidator {
 
         Assertions.assertEquals(expected.getState(), actual.getState());
         Assertions.assertEquals(expected.getFloor(), actual.getFloor());
+
+        validateFloorsToStopAt(expected.getFloorsToStopWhileGoingUp(), actual.getFloorsToStopWhileGoingUp());
+        validateFloorsToStopAt(expected.getFloorsToStopWhileGoingDown(), actual.getFloorsToStopWhileGoingDown());
+    }
+
+    private static void validateFloorsToStopAt(PriorityQueue<Integer> expectedfloorsToStopWhileGoingUp, PriorityQueue<Integer> actualFloorsToStopWhileGoingUp) {
+        Assertions.assertEquals(expectedfloorsToStopWhileGoingUp.size(), actualFloorsToStopWhileGoingUp.size());
+        int floorsToStopCount = expectedfloorsToStopWhileGoingUp.size();
+        for (int i = 0; i < floorsToStopCount; i++) {
+            Assertions.assertEquals(expectedfloorsToStopWhileGoingUp.remove(), actualFloorsToStopWhileGoingUp.remove());
+        }
     }
 
 }

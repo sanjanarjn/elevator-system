@@ -25,4 +25,11 @@ public class Lift {
             this.setLiftState(new LiftState(other.getLiftState()));
         }
     }
+
+    public boolean isMoving() {
+        return liftState != null && State.MOVING.equals(liftState.getState());
+    }
+    public boolean isServingInTheSameDirection(Direction direction) {
+        return liftState != null && State.MOVING.equals(liftState.getState()) && direction.equals(liftState.getServingDirection());
+    }
 }

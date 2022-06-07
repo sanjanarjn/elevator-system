@@ -1,7 +1,7 @@
 {
   "request": {
     "direction": "UP",
-    "pickupFloor": 2
+    "pickupFloor": 4
   },
   "beforeState" : {
     "lifts": [
@@ -15,8 +15,11 @@
       {
         "id": 2,
         "liftState": {
-          "state": "IDLE",
-          "floor": "2"
+          "state": "MOVING",
+          "floor": "1",
+          "movingDirection": "UP",
+          "servingDirection": "UP",
+          "floorsToStopWhileGoingUp": [2]
         }
       },
       {
@@ -41,10 +44,10 @@
         "id": 2,
         "liftState": {
           "state": "MOVING",
-          "floor": 0,
+          "floor": 1,
           "movingDirection": "UP",
           "servingDirection": "UP",
-          "floorsToStopWhileGoingUp": [2]
+          "floorsToStopWhileGoingUp": [2,4]
         }
       },
       {

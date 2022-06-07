@@ -11,4 +11,5 @@ import lombok.Setter;
 @Setter
 public class LiftSystemConfiguration {
     private int liftCount;
+    private int floorCount;
 }

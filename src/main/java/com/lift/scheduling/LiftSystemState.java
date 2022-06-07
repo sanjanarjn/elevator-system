@@ -2,6 +2,7 @@ package com.lift.scheduling;
 
 import com.lift.models.Lift;
 import com.lift.models.LiftState;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.util.function.Predicate;
 
 
 @Setter
+@Getter
 @NoArgsConstructor
 public class LiftSystemState {
     private List<Lift> lifts;
@@ -28,7 +30,7 @@ public class LiftSystemState {
     }
 
     public Optional<Lift> getLift(int id) {
-        return this.lifts == null || lifts.size() < id ? Optional.empty() : Optional.of(lifts.get(id));
+        return this.lifts == null ? Optional.empty() : lifts.stream().filter(lift -> lift.getId() == id).findFirst();
     }
 
     public LiftSystemState(LiftSystemState state) {
@@ -56,6 +58,14 @@ public class LiftSystemState {
 
             if(state.getServingDirection() != null)
                 liftState.setServingDirection(state.getServingDirection());
+        }
+    }
+
+    void addFloorToStopAt(int liftId, int floor) {
+        Optional<Lift> liftOptional = getLift(liftId);
+        if(liftOptional.isPresent()) {
+            LiftState liftState = liftOptional.get().getLiftState();
+            liftState.addFloorToStopAt(floor);
         }
     }
 

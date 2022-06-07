@@ -16,14 +16,7 @@ import java.util.List;
 
 public class LiftSchedulerTest {
 
-    private LiftSystem liftSystem = new LiftSystem();
     private LiftScheduler scheduler = new LiftScheduler();
-
-    @BeforeEach
-    public void initialiseSystem() throws TestingException {
-        LiftSystemTestData initialTestData = TestUtil.getTestDataForInitialisation();
-        liftSystem.initialize(initialTestData.getConfiguration());
-    }
 
     @ParameterizedTest
     @MethodSource("getTestDataForPickupRequests")

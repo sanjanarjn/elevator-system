@@ -9,7 +9,7 @@ public class StrategyBasedSchedulerFactory {
 
     static {
         instances.put(SchedulingStrategy.IDLE_AT_SAME_FLOOR, new IdleAtSameFloorScheduler());
-        instances.put(SchedulingStrategy.MOVING_TO_THE_FLOOR, new IdleAtSameFloorScheduler());
+        instances.put(SchedulingStrategy.MOVING_TO_THE_FLOOR, new MovingToTheFloorScheduler());
         instances.put(SchedulingStrategy.IDLE_AT_ANOTHER_FLOOR, new IdleAtSameFloorScheduler());
     }
 

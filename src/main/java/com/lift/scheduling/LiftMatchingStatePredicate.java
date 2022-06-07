@@ -20,17 +20,17 @@ class LiftMatchingStatePredicate implements LiftStatePredicate {
         }
 
         if(!matching)
-            return true;
+            return false;
 
         if(state.getFloor() != null) {
             matching = state.getFloor().equals(liftState.getFloor());
         }
 
         if(!matching)
-            return true;
+            return false;
 
         if(state.getServingDirection() != null) {
-            matching = state.getMovingDirection().equals(liftState.getMovingDirection());
+            matching = state.getServingDirection().equals(liftState.getServingDirection());
         }
         return matching;
     }
