@@ -4,7 +4,7 @@ import com.lift.models.PickupRequest;
 
 public class IdleAtAnotherFloorScheduler extends StrategyBasedScheduler {
     @Override
-    public boolean scheduleLiftBasedOnStrategy(PickupRequest request, LiftSystemState systemState, SchedulingStrategy strategy) {
-        return false;
+    public ScheduleUpdate scheduleLiftBasedOnStrategy(PickupRequest request, LiftSystemState systemState, SchedulingStrategy strategy) {
+        return null;
     }
 }

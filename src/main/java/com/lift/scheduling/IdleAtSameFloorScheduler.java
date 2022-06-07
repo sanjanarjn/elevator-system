@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public class IdleAtSameFloorScheduler extends StrategyBasedScheduler {
     @Override
-    public boolean scheduleLiftBasedOnStrategy(PickupRequest request, LiftSystemState systemState, SchedulingStrategy strategy) {
+    public ScheduleUpdate scheduleLiftBasedOnStrategy(PickupRequest request, LiftSystemState systemState, SchedulingStrategy strategy) {
+
 
         LiftState targetState = new LiftState();
         targetState.setFloor(request.getPickupFloor());
@@ -21,11 +22,17 @@ public class IdleAtSameFloorScheduler extends StrategyBasedScheduler {
 
         Optional<Integer> matchingLiftId = systemState.getLiftByState(targetState);
         if(matchingLiftId.isPresent()) {
-            systemState.updateLiftStatus(matchingLiftId.get(), updatedState);
-            return true;
+            ScheduleUpdate update = new ScheduleUpdate();
+            update.setSuccessfullyScheduled(true);
+
+            LiftSystemState updatedSystemState = new LiftSystemState(systemState);
+            updatedSystemState.updateLiftStatus(matchingLiftId.get(), updatedState);
+            update.setUpdatedState(updatedSystemState);
+
+            return update;
         }
         else {
-            return false;
+            return ScheduleUpdate.failedUpdate();
         }
     }
 }

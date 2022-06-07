@@ -1,6 +1,7 @@
 package com.lift.system;
 
 import com.lift.scheduling.LiftScheduler;
+import com.lift.scheduling.LiftSystemState;
 import com.lift.system.exceptions.TestingException;
 import com.lift.system.models.LiftSystemTestData;
 import com.lift.system.util.TestUtil;
@@ -27,8 +28,8 @@ public class LiftSchedulerTest {
     @ParameterizedTest
     @MethodSource("getTestDataForPickupRequests")
     public void testPickUpRequests(LiftSystemTestData testData) {
-        scheduler.handlePickupRequest(testData.getRequest(), testData.getBeforeState());
-        LiftStateValidator.validate(testData.getAfterState(), liftSystem.getSystemState());
+        LiftSystemState updatedState = scheduler.handlePickupRequest(testData.getRequest(), testData.getBeforeState());
+        LiftStateValidator.validate(testData.getAfterState(), updatedState);
     }
 
     private static List<LiftSystemTestData> getTestDataForPickupRequests() throws TestingException {

@@ -2,6 +2,7 @@ package com.lift.scheduling;
 
 import com.lift.models.Lift;
 import com.lift.models.LiftState;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.function.Predicate;
 
 
 @Setter
+@NoArgsConstructor
 public class LiftSystemState {
     private List<Lift> lifts;
 
@@ -27,6 +29,14 @@ public class LiftSystemState {
 
     public Optional<Lift> getLift(int id) {
         return this.lifts == null || lifts.size() < id ? Optional.empty() : Optional.of(lifts.get(id));
+    }
+
+    public LiftSystemState(LiftSystemState state) {
+        if(state.lifts != null) {
+            for (Lift lift : state.lifts) {
+                this.addLift(lift);
+            }
+        }
     }
 
     void updateLiftStatus(int liftId, LiftState state) {

@@ -41,7 +41,7 @@
         "id": 2,
         "liftState": {
           "state": "MOVING",
-          "floor": "2",
+          "floor": 0,
           "movingDirection": "UP",
           "servingDirection": "UP"
         }

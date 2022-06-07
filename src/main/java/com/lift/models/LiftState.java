@@ -17,4 +17,11 @@ public class LiftState {
         this.state = State.IDLE;
         this.floor = 0;
     }
+
+    public LiftState(LiftState state) {
+        this.state = state.getState();
+        this.floor = state.getFloor();;
+        this.movingDirection = state.getMovingDirection();
+        this.servingDirection = state.getServingDirection();
+    }
 }

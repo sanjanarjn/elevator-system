@@ -17,4 +17,12 @@ public class Lift {
         this.id = id;
         this.liftState = new LiftState();
     }
+
+    public Lift(Lift other) {
+
+        this.id = other.id;
+        if(other.getLiftState() != null) {
+            this.setLiftState(new LiftState(other.getLiftState()));
+        }
+    }
 }
